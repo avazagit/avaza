@@ -48,5 +48,6 @@ sudo service apache2 restart
 echo "--- COMPOSER SETUP START ---"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
-
+cd /vagrant
+composer update
 echo "--- SETUP COMPLETE ... SSH FOR CONNECTION ---"
