@@ -15,7 +15,6 @@ class CreateInterpretersLanguagesTable extends Migration {
 		Schema::create('interpreters_languages', function(Blueprint $table)
 		{
 			$table->integer('interpreter_id');
-			$table->decimal('rate', 5, 2);
 			$table->integer('language_id');
 		});
 	}

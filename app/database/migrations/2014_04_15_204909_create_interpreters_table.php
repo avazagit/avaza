@@ -15,9 +15,9 @@ class CreateInterpretersTable extends Migration {
 		Schema::create('interpreters', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('intid');
-			$table->integer('primary_phone');
-			$table->integer('secondary_phone');
+			$table->integer('intid', 4);
+			$table->integer('primary_phone', 10);
+			$table->integer('secondary_phone', 10);
 			$table->boolean('on_a_call');
 			$table->timestamps();
 		});

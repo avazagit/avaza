@@ -20,8 +20,8 @@ class CreateWorkersTable extends Migration {
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email', 50);
-            $table->integer('phone_extension');
-            $table->integer('phone_password');
+            $table->integer('phone_extension', 4);
+            $table->integer('phone_password', 4);
             $table->integer('interpreter_id');
             $table->timestamps();
 		});
