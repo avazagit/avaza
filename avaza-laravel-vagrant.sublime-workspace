@@ -1,0 +1,288 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"",
+				"Laravel Generate: Migration"
+			],
+			[
+				"pre",
+				"Preferences: Browse Packages"
+			],
+			[
+				"pref",
+				"Preferences: Browse Packages"
+			],
+			[
+				"gen",
+				"Laravel Generate: Migration"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"Laravel ",
+				"Laravel Generate: Migration"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/laravelgenerator.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/generate.py",
+		"/C/Program Files/Sublime Text 3/Packages/Default.sublime-commands",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_19_210449_create_users_table.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_19_210336_create_users_table.php",
+		"/C/Users/Josh/vagrant/avaza/composer.json",
+		"/C/Users/Josh/vagrant/avaza/app/config/database.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_15_204909_create_interpreters_table.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_14_185128_create_workers_table.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_14_184829_create_workers_roles_table.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_14_173945_create_roles_table.php",
+		"/C/Users/Josh/vagrant/yep/Wondershare Dr.Fone for iOS/iPhone/04-16-2014 at 1.26.56 AM/Messages/HTML/media/2",
+		"/C/Users/Josh/vagrant/yep/Wondershare Dr.Fone for iOS/iPhone/04-16-2014 at 1.26.56 AM/Messages/HTML/media/250",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_15_205016_create_interpreters_languages_table.php",
+		"/C/Users/Josh/vagrant/avaza/app/database/migrations/2014_04_15_205011_create_languages_table.php",
+		"/C/Users/Josh/vagrant/avaza/install.sh",
+		"/C/Users/Josh/AppData/Local/Temp/fz3temp-1/envvars",
+		"/C/Users/Josh/AppData/Local/Temp/fz3temp-1/apache2.conf",
+		"/C/Users/Josh/AppData/Local/Temp/fz3temp-1/000-default.conf",
+		"/C/Users/Josh/AppData/Local/Temp/fz3temp-1/magic",
+		"/C/Users/Josh/AppData/Local/Temp/fz3temp-1/httpd.conf",
+		"/C/Users/Josh/vagrant/.gitignore",
+		"/C/Users/Josh/vagrant/Vagrantfile",
+		"/C/Users/Josh/vagrant/install.sh",
+		"/C/Users/Josh/laravel-dev/install.sh",
+		"/C/Users/Josh/laravel-dev/Vagrantfile",
+		"/C/Users/Josh/vagrant/laravel/public/js/shared.js",
+		"/C/Users/Josh/vagrant/laravel/app/routes.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/src/Formativ/Chat/Command/Serve.php",
+		"/C/Users/Josh/vagrant/laravel/app/views/index/index.blade.php",
+		"/C/Users/Josh/vagrant/avaza/public/js/shared.js",
+		"/C/Users/Josh/vagrant/avaza/app/views/index/index.blade.php",
+		"/C/Users/Josh/vagrant/avaza/app/routes.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/Command/Serve.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/ChatServiceProvider.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/ChatInterface.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/Chat.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/User.php",
+		"/C/Users/Josh/vagrant/avaza/workbench/formativ/chat/src/Formativ/Chat/UserInterface.php",
+		"/C/Users/Josh/vagrant/provisioning_files/bootstrap.sh",
+		"/C/Users/Josh/vagrant/laravel/composer.json",
+		"/C/Users/Josh/vagrant/laravel/app/config/database.php",
+		"/C/Users/Josh/vagrant/laravel/public/routes.php",
+		"/C/Users/Josh/vagrant/laravel/app/filters.php",
+		"/C/Users/Josh/vagrant/laravel/app/controllers/UrlController.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/ChatServiceProvider.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/src/Formativ/Chat/ChatInterface.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/src/Formativ/Chat/Chat.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/src/Formativ/Chat/UserInterface.php",
+		"/C/Users/Josh/vagrant/laravel/workbench/formativ/chat/src/Formativ/Chat/User.php",
+		"/C/Users/Josh/vagrant/laravel/public/shared.js",
+		"/C/Users/Josh/vagrant/laravel/public/css/shared.css",
+		"/C/Users/Josh/vagrant/laravel/app/database/seeds/UserTableSeeder.php",
+		"/C/Users/Josh/vagrant/laravel/app/database/seeds/DatabaseSeeder.php",
+		"/C/xampp/htdocs/test/bootstrap/paths.php",
+		"/C/xampp/htdocs/test/app/models/User.php",
+		"/C/Users/Josh/vagrant/laravel/app/views/test.php",
+		"/C/Users/Josh/vagrant/provisioning_files/laravel",
+		"/C/Users/Josh/vagrant/bootstrap.sh",
+		"/C/Users/Josh/vagrant/laravel/app/database/migrations/2014_04_05_051238_create_urls_table.php",
+		"/C/Users/Josh/vagrant/laravel/app/models/Url.php",
+		"/C/xampp/htdocs/test/app/filters.php",
+		"/C/xampp/htdocs/test/app/views/layout.blade.php",
+		"/C/xampp/htdocs/test/app/views/users.blade.php",
+		"/C/xampp/htdocs/test/app/routes.php",
+		"/C/Users/Josh/vagrant/laravel/app/database/migrations/2014_04_05_050500_create_users_table.php",
+		"/C/Users/Josh/vagrant/laravel/app/database/migrations/2014_04_05_051138_create_users_table.php",
+		"/C/xampp/htdocs/test/app/database/seeds/DatabaseSeeder.php",
+		"/C/xampp/htdocs/test/app/database/seeds/UserTableSeeder.php",
+		"/C/Users/Josh/vagrant/laravel/app/database/migrations/2014_04_05_050546_create_urls_table.php",
+		"/C/Users/Josh/test/app/routes.php",
+		"/C/xampp/htdocs/ace_template/Ace Admin/198.74.61.72/themes/preview/ace/buttons.html",
+		"/C/xampp/htdocs/ace_template/Ace Admin/198.74.61.72/themes/preview/ace/blank.html",
+		"/C/xampp/htdocs/ace_template/Ace Admin/198.74.61.72/themes/preview/ace/emitter/index.html",
+		"/C/xampp/htdocs/ace_template/Ace Admin/198.74.61.72/themes/preview/ace/lib/dropzone.html",
+		"/C/xampp/htdocs/alvin/application/config/ion_auth.php",
+		"/C/xampp/htdocs/alvin/application/views/dmz_htmlform/section.php",
+		"/C/xampp/htdocs/alvin/application/views/dmz_htmlform/row.php",
+		"/C/xampp/htdocs/alvin/application/views/dmz_htmlform/form.php",
+		"/C/xampp/htdocs/xampp_admin/index.php",
+		"/C/xampp/htdocs/alvin/application/config/routes.php",
+		"/C/xampp/htdocs/alvin/application/config/config.php",
+		"/C/xampp/htdocs/alvin/application/config/database.php",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/blank.php",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Josh/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 192.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"namespace",
+			"server",
+			"servername",
+			"7778",
+			"/",
+			"7778"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 192.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 148.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "avaza-laravel-vagrant.sublime-project",
+	"replace":
+	{
+		"height": 380.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 256.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

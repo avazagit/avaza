@@ -1,0 +1,8 @@
+$table->dateTime('last_tardy')->nullable();
+$table->dateTime('last_absent')->nullable();
+$table->dateTime('last_review')->nullable();
+$table->dateTime('last_failed')->nullable();
+$table->dateTime('last_no_show')->nullable();
+$table->dateTime('last_discipline')->nullable();
+$table->dateTime('last_unanswered')->nullable();
+$table->dateTime('last_interpreted')->nullable();

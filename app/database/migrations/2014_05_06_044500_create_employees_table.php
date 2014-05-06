@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInterpretersTable extends Migration {
+class CreateEmployeesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,13 @@ class CreateInterpretersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('interpreters', function(Blueprint $table)
+		Schema::create('employees', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('intid', 4);
-			$table->integer('primary_phone', 10);
-			$table->integer('secondary_phone', 10);
-			$table->boolean('on_a_call');
+			$table->string('job_title');
+			$table->integer('supervisor_id')->nullable();
+			$table->integer('permission_id')->default(1);
+			$table->dateTime('employee_since');
 			$table->timestamps();
 		});
 	}
@@ -30,7 +30,7 @@ class CreateInterpretersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('interpreters');
+		Schema::drop('employees');
 	}
 
 }

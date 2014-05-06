@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLanguagesTable extends Migration {
+class CreateUsersRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateLanguagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('languages', function(Blueprint $table)
+		Schema::create('users_roles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('language_readable', 50);
-			$table->string('language_code');
+			$table->integer('user_id');
+			$table->integer('role_reference_id');
+			$table->integer('role_id');
 		});
 	}
 
@@ -27,7 +28,7 @@ class CreateLanguagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('languages');
+		Schema::drop('users_roles');
 	}
 
 }

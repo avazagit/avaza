@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchedulesTable extends Migration {
+class CreateLanguagesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,14 @@ class CreateSchedulesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('schedules', function(Blueprint $table)
+		Schema::create('languages', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('language');
+			$table->string('phonetic');
+			$table->string('language_code');
+			$table->string('country_of_origin');
+			$table->string('alternate_language_id');
 			$table->timestamps();
 		});
 	}
@@ -26,7 +31,7 @@ class CreateSchedulesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('schedules');
+		Schema::drop('languages');
 	}
 
 }
