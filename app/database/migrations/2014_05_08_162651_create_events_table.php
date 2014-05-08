@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgenciesTable extends Migration {
+class CreateEventsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,13 @@ class CreateAgenciesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('agencies', function(Blueprint $table)
+		Schema::create('events', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('event_id');
+			$table->string('event_type');
+			$table->string('description');
+			$table->dateTime('timestamp');
 			$table->timestamps();
 		});
 	}
@@ -26,7 +30,7 @@ class CreateAgenciesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('agencies');
+		Schema::drop('events');
 	}
 
 }

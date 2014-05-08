@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientsLanguagesTable extends Migration {
+class CreateContractsLanguagesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,10 @@ class CreateClientsLanguagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('clients_languages', function(Blueprint $table)
+		Schema::create('contracts_languages', function(Blueprint $table)
 		{
-			$table->integer('client_id');
-			$table->integer('set', 4);
-			$table->integer('language_id');
+			$table->increments('id');
+			$table->timestamps();
 		});
 	}
 
@@ -27,7 +26,7 @@ class CreateClientsLanguagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('clients_languages');
+		Schema::drop('contracts_languages');
 	}
 
 }

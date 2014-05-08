@@ -88,10 +88,10 @@ class CreatePermissionsTable extends Migration {
 			$table->boolean('shifts_update')->default(0);
 			$table->boolean('shifts_create')->default(0);
 			$table->boolean('shifts_delete')->default(0);
-			$table->boolean('timecards_read')->default(1);
-			$table->boolean('timecards_update')->default(0);
-			$table->boolean('timecards_create')->default(0);
-			$table->boolean('timecards_delete')->default(0);
+			$table->boolean('time_punches_read')->default(1);
+			$table->boolean('time_punches_update')->default(0);
+			$table->boolean('time_punches_create')->default(0);
+			$table->boolean('time_punches_delete')->default(0);
 			$table->timestamps();
 		});
 	}
