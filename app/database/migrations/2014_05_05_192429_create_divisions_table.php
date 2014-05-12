@@ -16,7 +16,7 @@ class CreateDivisionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->boolean('active')->default(1);
-			$table->integer('agency_id');//foreign key - agencies
+			$table->integer('agency_id')->unsigned();
 			$table->string('name');//critical invoice line detail
 			$table->string('access_code');//critical invoice line detail
 			$table->string('contact_name');

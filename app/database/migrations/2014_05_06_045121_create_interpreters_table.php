@@ -16,16 +16,10 @@ class CreateInterpretersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('id_number');
-			$table->integer('extension')->nullable();
-			$table->integer('primary_phone');
-			$table->integer('secondary_phone')->nullable();
-			$table->string('location_city');
-			$table->string('location_state');
-			$table->string('location_time_zone');
 			$table->boolean('available_now')->default(1);
 			$table->dateTime('interpreter_since');
 			$table->boolean('suspended')->default(0);
-			$table->string('suspended_reason')->nullable();
+			$table->string('suspended_reason', 20)->nullable();//quality control, no answer, complaint
 			$table->timestamps();
 		});
 	}

@@ -15,8 +15,8 @@ class CreateInterpretersLanguagesTable extends Migration {
 		Schema::create('interpreters_languages', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('interpreter_id');
-			$table->integer('language_id');
+			$table->integer('interpreter_id')->unsigned();
+			$table->integer('language_id')->unsigned();
 			$table->boolean('phone')->default(1);
 			$table->decimal('phone_rate_minute', 2, 2);
 			$table->boolean('video')->default(0);

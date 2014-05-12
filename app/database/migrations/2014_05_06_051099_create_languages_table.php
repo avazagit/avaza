@@ -16,10 +16,10 @@ class CreateLanguagesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('language');
-			$table->string('phonetic');
+			$table->string('phonetic')->nullable();
 			$table->string('language_code');
-			$table->string('country_of_origin');
-			$table->string('alternate_language_id');
+			$table->string('country_of_origin')->nullable();
+			$table->text('alternate_languages_json')->nullable();
 			$table->timestamps();
 		});
 	}

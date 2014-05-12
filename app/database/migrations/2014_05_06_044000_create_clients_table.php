@@ -15,7 +15,7 @@ class CreateClientsTable extends Migration {
 		Schema::create('clients', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('division_id');
+			$table->integer('division_id')->unsigned();
 			$table->boolean('view_reports')->default(0);
 			$table->boolean('leave_feedback')->default(0);
 			$table->boolean('phone')->default(1);
@@ -23,7 +23,7 @@ class CreateClientsTable extends Migration {
 			$table->boolean('on_site')->default(0);
 			$table->boolean('translate')->default(0);
 			$table->boolean('online_requests')->default(1);
-			$table->dateTime('last_request');
+			$table->dateTime('last_request')->nullable();
 			$table->timestamps();
 		});
 	}

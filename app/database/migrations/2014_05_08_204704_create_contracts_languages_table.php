@@ -15,6 +15,9 @@ class CreateContractsLanguagesTable extends Migration {
 		Schema::create('contracts_languages', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('contract_id')->unsigned();
+			$table->integer('language_id')->unsigned();
+			$table->integer('language_set')->default(4);			
 			$table->timestamps();
 		});
 	}

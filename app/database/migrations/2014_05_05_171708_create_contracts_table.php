@@ -16,11 +16,12 @@ class CreateContractsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->boolean('active')->default(1);
-			$table->integer('manager_id')->nullable();//foreign key - employees
+			$table->integer('manager_id')->unsigned()->nullable();
 			$table->string('name');
 			$table->integer('account_number');//critical invoice header detail
 			$table->string('contract_number');
-			$table->string('purchase_order_number')->nullable();//critical invoice header detail
+			$table->string('current_purchase_order_number')->nullable();//critical invoice header detail
+			$table->text('purchase_order_numbers_json')->nullable();//['62013_62014':'PO NUMBER HERE', '62012_62013':'PO NUMBER HERE']
 			$table->date('start_date');
 			$table->date('end_date');
 			//TIMEFRAME DETAILS
@@ -78,12 +79,12 @@ class CreateContractsTable extends Migration {
 			$table->integer('tsl_3_document')->default(50);
 			$table->integer('tsl_4_document')->default(55);
 			$table->boolean('tsl_format')->default(1);
-			$table->integer('tsl_format_page', 3, 2)->default(25);
+			$table->integer('tsl_format_page')->default(25);
 			$table->boolean('tsl_rush')->default(1);
-			$table->integer('tsl_rush_fee', 3, 2)->default(50);
+			$table->integer('tsl_rush_fee')->default(50);
 			$table->integer('tsl_rush_window')->default(72);//hours until deadline
 			$table->boolean('tsl_cancel')->default(1);
-			$table->integer('tsl_cancel_fee', 3, 2)->default(25);
+			$table->integer('tsl_cancel_fee')->default(25);
 			$table->integer('tsl_cancel_window')->default(24);//hours from request
 			$table->timestamps();
 		});
