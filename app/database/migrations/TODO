@@ -1,0 +1,24 @@
+//TODO//
+
+//REPAIR
+user class 'superuser' etc
+staff no "location_"
+schedule language index
+
+interpreter id unique
+contract number unique
+account_number unique
+client code unique - agency
+access code unique
+language code unique
+language unique
+userable_id unique
+permissable_id unique
+
+//CREATE
+Invoice (agency hasMany)
+Report (able)
+Call	
+Session
+Site
+Document

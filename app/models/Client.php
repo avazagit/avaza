@@ -1,17 +1,17 @@
 <?php
 
-class Client extends \Eloquent {
+class Client extends Elegant{
 
 	public function division(){
         return $this->belongsTo('Division');
     }
 
     public function user(){
-        return $this->morphOne('User', 'userable');//make unique
+        return $this->morphOne('User', 'userable');
     }
     
     public function permission(){
-        return $this->morphOne('Permission', 'permissable');//make unique
+        return $this->morphOne('Permission', 'permissable');
     }
     
     public function schedules(){
@@ -25,9 +25,19 @@ class Client extends \Eloquent {
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
+		'division_id' => ,
+		'view_reports' => ,
+		'leave_feedback' => ,
+		'phone' => ,
+		'video' => ,
+		'on_site' => ,
+		'translate' => ,
+		'online_requests' => ,
+		'last_request' => ,
 	];
 
 	// Don't forget to fill this array
 	protected $fillable = array();
+	protected $softDelete = true;
 
 }

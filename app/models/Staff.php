@@ -1,6 +1,6 @@
 <?php
 
-class Staff extends \Eloquent {
+class Staff extends Elegant{
 
 	public function employee(){
         return $this->hasOne('Employee');
@@ -33,9 +33,21 @@ class Staff extends \Eloquent {
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
+		'employee_id' => ,
+		'supervisor_id' => ,
+		'supervisor_id' => ,
+		'interpreter_id' => ,
+		'interpreter_id' => ,
+		'extension' => ,
+		'primary_phone' => ,
+		'secondary_phone' => ,
+		'location_city', 50 => ,
+		'location_state', 2 => ,
+		'location_time_zone' => ,
 	];
 
 	// Don't forget to fill this array
 	protected $fillable = array();
+	protected $softDelete = true;
 
 }
