@@ -6,14 +6,16 @@ class Division extends \Eloquent {
         return $this->belongsTo('Agency');
     }
 
+    public function client(){
+        return $this->hasMany('Client');
+    }
+
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
 	];
 
 	// Don't forget to fill this array
-	protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at');
-	protected $guarded[] = 'active';
-	protected $guarded[] = 'agency_id';//FK Agency
+	protected $fillable = array();
 
 }

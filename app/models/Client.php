@@ -6,14 +6,28 @@ class Client extends \Eloquent {
         return $this->belongsTo('Division');
     }
 
+    public function user(){
+        return $this->morphOne('User', 'userable');//make unique
+    }
+    
+    public function permission(){
+        return $this->morphOne('Permission', 'permissable');//make unique
+    }
+    
+    public function schedules(){
+        return $this->morphMany('Schedule', 'schedulable');
+    }
+    
+    public function events(){
+        return $this->morphMany('Event', 'eventable');
+    }
+
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'
 	];
 
 	// Don't forget to fill this array
-	protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at');
-	protected $guarded[] = 'last_request';
-	protected $guarded[] = 'division_id';//FK Division
+	protected $fillable = array();
 
 }

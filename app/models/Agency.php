@@ -17,7 +17,7 @@ class Agency extends \Eloquent {
 		// 'title' => 'required'
 	];
 
-	protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at');
+	protected $fillable = array();
 	protected $softDelete = true;
 
 }

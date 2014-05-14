@@ -12,8 +12,6 @@ class Employee extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at');
-	protected $guarded[] = 'hourly_rate';
-	protected $softDelete = true;
+	protected $fillable = array();
 
 }
