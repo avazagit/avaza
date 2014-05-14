@@ -1,0 +1,1 @@
+/vagrant/app/views/permissions/edit.blade.php

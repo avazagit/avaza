@@ -1,0 +1,1 @@
+/vagrant/app/views/clients/edit.blade.php

@@ -1,0 +1,1 @@
+/vagrant/app/views/contracts/index.blade.php

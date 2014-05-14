@@ -15,3 +15,15 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::resource('staffs', 'StaffsController');
+Route::resource('employees', 'EmployeesController');
+Route::resource('interpreters', 'InterpretersController');
+Route::resource('clients', 'ClientsController');
+Route::resource('languages', 'LanguagesController');
+Route::resource('users', 'UsersController');
+Route::resource('permissions', 'PermissionsController');
+Route::resource('schedules', 'SchedulesController');
+Route::resource('events', 'EventsController');
+Route::resource('contracts', 'ContractsController');
+Route::resource('agencies', 'AgenciesController');
+Route::resource('divisions', 'DivisionsController');

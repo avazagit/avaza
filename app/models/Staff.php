@@ -1,6 +1,6 @@
 <?php
 
-class User extends \Eloquent {
+class Staff extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [

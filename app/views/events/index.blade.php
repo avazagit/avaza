@@ -1,0 +1,1 @@
+/vagrant/app/views/events/index.blade.php
