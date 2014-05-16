@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
 echo "~~~*****************************************~~~"
 echo "--- INSTALL START ---"
 echo "~~~*****************************************~~~"
@@ -10,7 +9,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again p
 echo "~~~*****************************************~~~"
 echo "--- BASE PACKAGES INSTALL ---"
 echo "~~~*****************************************~~~"
-sudo apt-get install -y vim curl python-software-properties cifs-utils
+sudo apt-get install -y vim curl python-software-properties
 echo "~~~*****************************************~~~"
 echo "--- NEWEST PHP VERSION AND PACKAGES ---"
 echo "~~~*****************************************~~~"
