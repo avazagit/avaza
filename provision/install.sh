@@ -1,22 +1,18 @@
 #!/usr/bin/env bash
+sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
 echo "~~~*****************************************~~~"
 echo "--- INSTALL START ---"
 echo "~~~*****************************************~~~"
-sed "s/\^M//g" /avaza/provision/mysql.sh > /avaza/provision/mysqlnoms.sh
+sudo add-apt-repository -y ppa:ondrej/php5
 sudo apt-get update
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 echo "~~~*****************************************~~~"
 echo "--- BASE PACKAGES INSTALL ---"
 echo "~~~*****************************************~~~"
-sudo apt-get install -y vim curl python-software-properties
+sudo apt-get install -y vim curl python-software-properties cifs-utils
 echo "~~~*****************************************~~~"
-echo "--- NEWEST PHP INSTALL ---"
-echo "~~~*****************************************~~~"
-sudo add-apt-repository -y ppa:ondrej/php5
-sudo apt-get update
-echo "~~~*****************************************~~~"
-echo "--- PHP PACKAGES ---"
+echo "--- NEWEST PHP VERSION AND PACKAGES ---"
 echo "~~~*****************************************~~~"
 sudo apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql git-core
 echo "~~~*****************************************~~~"
@@ -39,7 +35,6 @@ echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/servername.co
 sudo a2enconf servername
 sudo service apache2 restart
 sed -i "s/www.*/www/" /etc/apache2/sites-enabled/000-default.conf
-#sed -i "s/# Global configuration/ServerName localhost/" /etc/apache2/apache2.conf
 echo "~~~*****************************************~~~"
 echo "--- ERROR SETTINGS ---"
 echo "~~~*****************************************~~~"
@@ -50,7 +45,7 @@ echo "~~~*****************************************~~~"
 echo "--- SETTING WEB FOLDER ---"
 echo "~~~*****************************************~~~"
 sudo rm -rf /var/www
-sudo ln -fs /avaza/public /var/www
+sudo ln -fs /vagrant/public /var/www
 echo "~~~*****************************************~~~"
 echo "--- APACHE RESTART ---"
 echo "~~~*****************************************~~~"
@@ -58,13 +53,17 @@ sudo service apache2 restart
 echo "~~~*****************************************~~~"
 echo "--- MYSQL SETUP ---"
 echo "~~~*****************************************~~~"
-/avaza/provision/mysql.sh
+mysql -u root -proot mysql -e "CREATE USER 'avaza'@'%' IDENTIFIED BY 'avaza';"
+mysql -u root -proot mysql -e "CREATE USER 'avaza'@'localhost' IDENTIFIED BY 'avaza';"
+mysql -u root -proot mysql -e "CREATE DATABASE avaza;"
+mysql -u root -proot mysql -e "GRANT ALL PRIVILEGES ON  avaza.* TO 'avaza'@'%' WITH GRANT OPTION;"
+mysql -u root -proot mysql -e "GRANT ALL PRIVILEGES ON  avaza.* TO 'avaza'@'localhost' WITH GRANT OPTION;"
 echo "~~~*****************************************~~~"
 echo "--- COMPOSER SETUP START ---"
 echo "~~~*****************************************~~~"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
-cd /avaza
+cd /vagrant
 composer update
 echo "~~~*****************************************~~~"
 echo "--- SETUP COMPLETE ... SSH FOR CONNECTION ---"
