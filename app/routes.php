@@ -27,3 +27,4 @@ Route::resource('events', 'EventsController');
 Route::resource('contracts', 'ContractsController');
 Route::resource('agencies', 'AgenciesController');
 Route::resource('divisions', 'DivisionsController');
+Route::resource('roles', 'RolesController');

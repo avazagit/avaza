@@ -1,9 +1,10 @@
 //TODO//
 
 //REPAIR
-user class 'superuser' etc
 staff no "location_"
 schedule language index
+user has many roles
+role has one permission
 
 interpreter id unique
 contract number unique
