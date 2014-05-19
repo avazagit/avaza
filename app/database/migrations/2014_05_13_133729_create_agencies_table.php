@@ -17,7 +17,7 @@ class CreateAgenciesTable extends Migration {
 			$table->boolean('active')->default(1);
 			$table->integer('contract_id')->unsigned()->index();
 			$table->string('name');//critical invoice header detail
-			$table->string('client_code');//critical invoice header detail
+			$table->string('client_code')->unique();//critical invoice header detail
 			$table->string('contact_name');
 			$table->integer('contact_phone');
 			$table->integer('contact_ext');

@@ -14,9 +14,9 @@ class CreateLanguagesTable extends Migration {
 	{
 		Schema::create('languages', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('language');
+			$table->string('language')->unique();
 			$table->string('phonetic')->nullable();
-			$table->string('language_code');
+			$table->string('language_code')->unique();
 			$table->string('country_of_origin')->nullable();
 			$table->text('alternate_languages_json')->nullable();
 			$table->softDeletes();

@@ -23,9 +23,9 @@ class CreateStaffsTable extends Migration {
 			$table->integer('extension')->nullable();
 			$table->integer('primary_phone');
 			$table->integer('secondary_phone')->nullable();
-			$table->string('location_city', 50);
-			$table->string('location_state', 2);
-			$table->string('location_time_zone');
+			$table->string('city', 50);
+			$table->string('state', 2);
+			$table->string('time_zone');
 			$table->softDeletes();
 			$table->timestamps();
 		});

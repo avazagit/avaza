@@ -18,7 +18,7 @@ class CreateDivisionsTable extends Migration {
 			$table->integer('agency_id')->unsigned()->index();
 			$table->foreign('agency_id')->references('id')->on('agencies');
 			$table->string('name');//critical invoice line detail
-			$table->string('access_code');//critical invoice line detail
+			$table->string('access_code')->unique();//critical invoice line detail
 			$table->string('contact_name');
 			$table->integer('contact_phone');
 			$table->integer('contact_ext')->nullable();

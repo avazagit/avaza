@@ -1,0 +1,13 @@
+# The humans responsible & technology colophon
+# TEAM
+
+    Joshua Murray -- Senior Developer/Designer
+
+# THANKS
+
+    <Sy Nguyen, IT Lead, Avaza Language Services Corp>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr

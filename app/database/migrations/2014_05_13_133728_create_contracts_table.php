@@ -18,8 +18,8 @@ class CreateContractsTable extends Migration {
 			$table->integer('manager_id')->unsigned()->index()->nullable();
 			$table->foreign('manager_id')->references('id')->on('employees');
 			$table->string('name');
-			$table->integer('account_number');//critical invoice header detail
-			$table->string('contract_number');
+			$table->integer('account_number')->unique();//critical invoice header detail
+			$table->string('contract_number')->unique();
 			$table->string('current_purchase_order_number')->nullable();//critical invoice header detail
 			$table->text('purchase_order_numbers_json')->nullable();//['62013_62014':'PO NUMBER HERE', '62012_62013':'PO NUMBER HERE']
 			$table->date('start_date');

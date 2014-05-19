@@ -10,22 +10,15 @@ class Schedule extends Elegant{
         return $this->hasOne('Language');
     }
 
-
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'schedulable' => ,
-		'language_id' => ,
-		'date' => ,
-		'start' => ,
-		'differential', 2, 2 => ,
-		'event_json' => ,
-		'recurrence_json' => ,
-		'fulfilled' => ,
+		'language_id' => 'required|exists:languages',
+		'date' => 'required|date|date_format:Y-m-d',
+		'start' => 'required|date|date_format:H:i:s',
+		'differential' => array('required', 'regex:^\d{1,2}($|\.\d{1,2}$)'),
+		'event_json' => 'required',
+		'recurrence_json' => 'required'
 	];
 
-	// Don't forget to fill this array
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

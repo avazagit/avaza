@@ -10,10 +10,6 @@ class Client extends Elegant{
         return $this->morphOne('User', 'userable');
     }
     
-    public function permission(){
-        return $this->morphOne('Permission', 'permissable');
-    }
-    
     public function schedules(){
         return $this->morphMany('Schedule', 'schedulable');
     }
@@ -22,21 +18,10 @@ class Client extends Elegant{
         return $this->morphMany('Event', 'eventable');
     }
 
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'division_id' => ,
-		'view_reports' => ,
-		'leave_feedback' => ,
-		'phone' => ,
-		'video' => ,
-		'on_site' => ,
-		'translate' => ,
-		'online_requests' => ,
-		'last_request' => ,
+		'division_id' => 'required|exists:divisions'
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

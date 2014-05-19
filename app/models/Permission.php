@@ -2,6 +2,10 @@
 
 class Permission extends Elegant{
 
+	public function users(){
+        return $this->hasMany('User');
+    }
+
 	public function permissable(){
         return $this->morphTo();
     }

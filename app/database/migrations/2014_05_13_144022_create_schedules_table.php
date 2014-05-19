@@ -15,7 +15,7 @@ class CreateSchedulesTable extends Migration {
 		Schema::create('schedules', function(Blueprint $table) {
 			$table->increments('id');
 			$table->morphs('schedulable');
-			$table->integer('language_id')->unsigned();
+			$table->integer('language_id')->unsigned()->index();
 			$table->date('date');
 			$table->time('start');
 			$table->decimal('differential', 2, 2);

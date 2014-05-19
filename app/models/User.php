@@ -6,6 +6,10 @@ class User extends Elegant{
         return $this->morphTo();
     }
 
+    public function permission(){
+        return $this->belongsTo('Permission');
+    }
+
 	// Add your validation rules here
 	public static $rules = [
 		// 'title' => 'required'

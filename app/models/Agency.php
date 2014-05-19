@@ -10,29 +10,24 @@ class Agency extends Elegant{
         return $this->belongsTo('Contract');
     }
 
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'active' => ,
-		'contract_id' => ,
-		'name' => ,
-		'client_code' => ,
-		'contact_name' => ,
-		'contact_phone' => ,
-		'contact_ext' => ,
-		'contact_fax' => ,
-		'contact_email' => ,
-		'bill_to_1' => ,
-		'bill_to_2' => ,
-		'street_1' => ,
-		'street_2' => ,
-		'building' => ,
-		'suite' => ,
-		'city' => ,
-		'state' => ,
-		'zip' => ,
-		'special_invoice_json_string' => ,
-		
+		  'contract_id' => 'required|exists:contracts',
+		         'name' => 'required|alpha_dash',
+		  'client_code' => 'unique:users',
+		 'contact_name' => 'required|alpha_dash',
+		'contact_phone' => 'required|numeric|digits:10',
+		  'contact_ext' => 'numeric',
+		  'contact_fax' => 'numeric|digits:10',
+		'contact_email' => 'email',
+		    'bill_to_1' => 'required|alpha_dash',
+		    'bill_to_2' => 'alpha_dash',
+		     'street_1' => 'required|alpha_dash',
+		     'street_2' => 'alpha_dash',
+		     'building' => 'alpha_dash',
+		        'suite' => 'alpha_dash',
+		         'city' => 'required|alpha',
+		        'state' => 'required|alpha|digits:2',
+		          'zip' => 'required|numeric|digits:5'
 	];
 
 	protected $fillable = array();

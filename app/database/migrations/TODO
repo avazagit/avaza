@@ -1,21 +1,5 @@
 //TODO//
 
-//REPAIR
-staff no "location_"
-schedule language index
-user has many roles
-role has one permission
-
-interpreter id unique
-contract number unique
-account_number unique
-client code unique - agency
-access code unique
-language code unique
-language unique
-userable_id unique
-permissable_id unique
-
 //CREATE
 Invoice (agency hasMany)
 Report (able)

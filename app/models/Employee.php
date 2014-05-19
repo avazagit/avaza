@@ -10,15 +10,14 @@ class Employee extends Elegant{
         return $this->hasMany('Contract', 'manager_id');
     }
     
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'job_title', 50 => ,
-		'employee_since' => ,
-		'hourly_rate', 3, 2 => ,
+		'job_title' => 'required|alpha_dash|digits_between:5,50',
+		'parking_extension' => 'required|numeric|digits:4',
+		'pickup_extension' => 'required|numeric|digits:4',
+		'employee_since' => 'required|date|date_format:Y-m-d H:i:s',
+		'hourly_rate' => array('required', 'regex:^\d{1,3}($|\.\d{1,2}$)')
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

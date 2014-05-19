@@ -8,10 +8,8 @@ class Event extends Elegant{
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'eventable' => ,
-		'description' => ,
-		'timestamp' => ,
+		'description' => 'required|alpha_dash|digits_between:2,254',
+		'timestamp' => 'required|date|date_format:Y-m-d H:i:s'
 	];
 
 	// Don't forget to fill this array

@@ -17,11 +17,7 @@ class Staff extends Elegant{
     public function user(){
         return $this->morphOne('User', 'userable');
     }
-    
-    public function permission(){
-        return $this->morphOne('Permission', 'permissable');
-    }
-    
+        
     public function schedules(){
         return $this->morphMany('Schedule', 'schedulable');
     }
@@ -32,18 +28,15 @@ class Staff extends Elegant{
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'employee_id' => ,
-		'supervisor_id' => ,
-		'supervisor_id' => ,
-		'interpreter_id' => ,
-		'interpreter_id' => ,
-		'extension' => ,
-		'primary_phone' => ,
-		'secondary_phone' => ,
-		'location_city', 50 => ,
-		'location_state', 2 => ,
-		'location_time_zone' => ,
+		'employee_id' => 'exists:employees',
+		'supervisor_id' => 'required|exists:employees',
+		'interpreter_id' => 'exists:interpreters',
+		'extension' => 'numeric|digits:4',
+		'primary_phone' => 'required|numeric|digits:10',
+		'secondary_phone' => '|numeric|digits:10',
+		'location_city' => 'required|alpha_dash|digits_between:5,50',
+		'location_state' => 'required|alpha|digits:2',
+		'location_time_zone' => 'required|alpha_dash',
 	];
 
 	// Don't forget to fill this array

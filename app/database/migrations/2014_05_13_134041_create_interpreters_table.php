@@ -14,7 +14,7 @@ class CreateInterpretersTable extends Migration {
 	{
 		Schema::create('interpreters', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('id_number');
+			$table->integer('id_number')->unique();
 			$table->boolean('available_now')->default(1);
 			$table->dateTime('interpreter_since');
 			$table->boolean('suspended')->default(0);
