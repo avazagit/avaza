@@ -26,20 +26,22 @@ class Staff extends Elegant{
         return $this->morphMany('Event', 'eventable');
     }
 
-	// Add your validation rules here
 	public static $rules = [
-		'employee_id' => 'exists:employees',
-		'supervisor_id' => 'required|exists:employees',
-		'interpreter_id' => 'exists:interpreters',
-		'extension' => 'numeric|digits:4',
+      //'id'
+		'employee_id' => 'exists:employees',           // null foreign index
+		'supervisor_id' => 'required|exists:employees',// foreign index
+		'interpreter_id' => 'exists:interpreters',     // null foreign index
+		'extension' => 'numeric|digits:4',             // null
 		'primary_phone' => 'required|numeric|digits:10',
-		'secondary_phone' => '|numeric|digits:10',
-		'location_city' => 'required|alpha_dash|digits_between:5,50',
-		'location_state' => 'required|alpha|digits:2',
-		'location_time_zone' => 'required|alpha_dash',
+		'secondary_phone' => '|numeric|digits:10',     // null
+		'city' => 'required|alpha_dash|digits_between:5,50',
+		'state' => 'required|alpha|digits:2',
+		'time_zone' => 'required|alpha_dash'
+      //'deleted_at'
+      //'created_at'
+      //'updated_at'
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

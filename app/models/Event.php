@@ -6,13 +6,17 @@ class Event extends Elegant{
         return $this->morphTo();
     }
 
-	// Add your validation rules here
 	public static $rules = [
+	  //id');
+	  //'eventable_id'
+	  //'eventable_type'
 		'description' => 'required|alpha_dash|digits_between:2,254',
 		'timestamp' => 'required|date|date_format:Y-m-d H:i:s'
+	  //'deleted_at'
+	  //'created_at'
+	  //'updated_at'
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

@@ -15,7 +15,7 @@ class CreatePermissionsTable extends Migration {
 		Schema::create('permissions', function(Blueprint $table) {
 			$table->increments('id');
 		//BASIC PERMISSION DATA
-			$table->string('name')->default('Interpreter');//Coule be job title??, Router, Super Admin, Client Manager, Client User etc
+			$table->string('name')->default('Interpreter');
 			$table->text('description');
 		//VIEW
 			$table->boolean('users_view'      )->default(0);

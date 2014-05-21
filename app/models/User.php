@@ -10,25 +10,27 @@ class User extends Elegant{
         return $this->belongsTo('Permission');
     }
 
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'userable' => ,
-		'email', 50 => ,
-		'password', 40 => ,
-		'first_name', 50 => ,
-		'last_name', 50 => ,
-		'activated' => ,
-		'activation_code' => ,
-		'activated_at' => ,
-		'last_successful_login' => ,
-		'reset_password_code' => ,
-		'last_login_attempt' => ,
-		'failed_login_attempts' => ,
-		'locked' => ,
+	  //'id'
+	  //'userable_id'
+	  //'userable_type'
+		'email' => 'required|unique:users|email|digits_between:5,50',
+		'password' => 'required',
+		'first_name' => 'required|digits_between:5,50',
+		'last_name' => 'required|digits_between:5,50',
+	  //'activated'// boolean default:FALSE
+		'activation_code' => 'alpha',                             // null
+		'activated_at' => 'date|date_format:Y-m-d H:i:s',         // null
+		'last_successful_login' => 'date|date_format:Y-m-d H:i:s',// null
+		'reset_password_code' => 'alpha',                         // null
+		'last_login_attempt' => 'date|date_format:Y-m-d H:i:s',   // null
+		'failed_login_attempts' => 'numeric'                      // null
+	  //'locked'// boolean default:FALSE
+	  //'deleted_at'
+      //'created_at'
+      //'updated_at'
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
 

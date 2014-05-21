@@ -14,18 +14,19 @@ class Language extends Elegant{
         return $this->hasMany('Schedule');
     }
 
-	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
-		'language' => ,
-		'phonetic' => ,
-		'language_code' => ,
-		'country_of_origin' => ,
-		'alternate_languages_json' => ,
+	  //'id'
+		'language' => 'required|unique:languages|aplha',
+	  //'phonetic' // null
+		'language_code' => 'required|digits:3|unique:languages|aplha',
+		'country_of_origin' => 'alpha'// null
+	  //'alternate_languages_json'    // null
+	  //'deleted_at'
+	  //'created_at'
+	  //'updated_at'
 	];
 
-	// Don't forget to fill this array
 	protected $fillable = array();
 	protected $softDelete = true;
-
+	
 }
