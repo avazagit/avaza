@@ -1,6 +1,6 @@
 <?php
 
-class Language extends Elegant{
+class Language extends BaseModel{
 
 	public function interpreters(){
         return $this->belongsToMany('Interpreter');
@@ -10,16 +10,20 @@ class Language extends Elegant{
         return $this->belongsToMany('Client');
     }
 
-    public function shcedules(){
+    public function schedules(){
         return $this->hasMany('Schedule');
     }
 
+
+	
+
+
 	public static $rules = [
 	  //'id'
-		'language' => 'required|unique:languages|aplha',
-	  //'phonetic' // null
-		'language_code' => 'required|digits:3|unique:languages|aplha',
-		'country_of_origin' => 'alpha'// null
+		'language' => 'required|unique:languages',
+	  //'phonetic'                    // null
+		'language_code' => 'required|digits:3|unique:languages',
+		'country_of_origin' =>        // null
 	  //'alternate_languages_json'    // null
 	  //'deleted_at'
 	  //'created_at'
