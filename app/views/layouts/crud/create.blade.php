@@ -1,4 +1,3 @@
-<!-- app/views/agencies/create.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +15,13 @@
 		<li><a href="{{ URL::to($data['3'] . '/create') }}">Create an {{ $data['0'] }}</a>
 	</ul>
 </nav>
-@section('layouts.crud.create')
-@stop
+{{ HTML::ul($errors->all()) }}
+{{ Form::open(array('url' => $data['3'])) }}
+@foreach($fields as $field)
+	{{ $field }}
+@endforeach
+{{ Form::submit('Create ' . $data['0'], array('class' => 'btn btn-primary')) }}
+{{ Form::close() }}
 </div>
 </body>
 </html>

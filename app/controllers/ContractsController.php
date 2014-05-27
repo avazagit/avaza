@@ -21,7 +21,9 @@ class ContractsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('contracts.create');
+		$data = array('Contract', 'contract', 'Contracts', 'contracts');
+		$fields = Form::generateByModel($data['1']);
+		return View::make('layouts.crud.create', array('data' => $data, 'fields' => $fields));
 	}
 
 	/**

@@ -7,7 +7,7 @@ class Event extends Elegant{
     }
 
 	public static $rules = [
-	  //id');
+	  //id'
 	  //'eventable_id'
 	  //'eventable_type'
 		'description' => 'required|alpha_dash|digits_between:2,254',

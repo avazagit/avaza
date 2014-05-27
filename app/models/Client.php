@@ -2,7 +2,7 @@
 
 class Client extends Elegant{
 
-	public function division(){
+   public function division(){
         return $this->belongsTo('Division');
     }
 
@@ -16,6 +16,16 @@ class Client extends Elegant{
     
     public function events(){
         return $this->morphMany('Event', 'eventable');
+    }
+
+    static function getFields(){
+        return array(
+            'division_id' => 'select',
+            'phone' => 'checkbox',
+            'video' => 'checkbox',
+            'sites' => 'checkbox',
+            'trans' => 'checkbox'
+        );
     }
 
 	public static $rules = [

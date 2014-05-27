@@ -11,7 +11,7 @@ class ClientsController extends \BaseController {
 	{
 		$clients = Client::all();
 
-		return View::make('clients.index', compact('clients'));
+		return View::make('clients.index', compact('clients')); 
 	}
 
 	/**
@@ -21,7 +21,9 @@ class ClientsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('clients.create');
+		$data = array('Client', 'client', 'Clients', 'clients');
+		$fields = Form::generateByModel($data['1']);
+		return View::make('layouts.crud.create', array('data' => $data, 'fields' => $fields));
 	}
 
 	/**

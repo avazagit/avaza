@@ -21,7 +21,9 @@ class AgenciesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('agencies.create');
+		$data = array('Agency', 'agency', 'Agencies', 'agencies');
+		$fields = Form::generateByModel($data['1']);
+		return View::make('layouts.crud.create', array('data' => $data, 'fields' => $fields));
 	}
 
 	/**
