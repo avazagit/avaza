@@ -20,7 +20,7 @@ class BaseModel extends \Eloquent{
     public static function getAllColumns($table){
         $columns = array();
         $query = 'SHOW COLUMNS FROM '.$table;
-        $column_detail = array('Field', 'Type', 'Null', 'Default', 'Extra', 'Length', 'Unsigned');
+        $column_detail = array('Field', 'Type', 'Null', 'Default', 'Extra', 'Key', 'Length', 'Unsigned');
         foreach(DB::select($query) as $column){
             $type_split = explode('(', $column->$column_detail['1']);
             $column->$column_detail['1'] = $type_split['0'];
@@ -29,12 +29,13 @@ class BaseModel extends \Eloquent{
             $column_setting = isset($length_split['1']) ? TRUE:FALSE;
             $columns[] = array(
                 $column->$column_detail['0'] => array(
-                    $column_detail['1'] => $column->$column_detail['1'], 
-                    $column_detail['2'] => $column->$column_detail['2'], 
-                    $column_detail['3'] => $column->$column_detail['3'], 
+                    $column_detail['1'] => $column->$column_detail['1'],
+                    $column_detail['2'] => $column->$column_detail['2'],
+                    $column_detail['3'] => $column->$column_detail['3'],
                     $column_detail['4'] => $column->$column_detail['4'],
-                    $column_detail['5'] => $column_length,
-                    $column_detail['6'] => $column_setting
+                    $column_detail['5'] => $column->$column_detail['5'],
+                    $column_detail['6'] => $column_length,
+                    $column_detail['7'] => $column_setting
                 )
             );
         }
@@ -42,32 +43,44 @@ class BaseModel extends \Eloquent{
     }
 
     public static function getValidationByColumn($column_array){
-        switch ($column_type){
-            case 'pgsql':
-                $query = "SELECT column_name FROM information_schema.columns WHERE table_name = '".$this->table."'";
-                $column_name = 'column_name';
-                $reverse = true;
-                break;
+        $required = $column_array['Null'] == 'YES' ? 'required':'';
+        $length   = $column_array['Length'];
+        $default  = $column_array['Default'];
 
-            case 'mysql':
-                $query = 'SHOW COLUMNS FROM '.$this->table;
-                $column_name = 'Field';
-                $reverse = false;
-                break;
 
-            case 'sqlsrv':
-                $parts = explode('.', $this->table);
-                $num = (count($parts) - 1);
-                $table = $parts[$num];
-                $query = "SELECT column_name FROM ".DB::connection()->getConfig('database').".INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'".$table."'";
-                $column_name = 'column_name';
-                $reverse = false;
-                break;
+        switch ($column_array['Type']){
+            case 'int':
+                
 
-            default: 
-                $error = 'Database driver not supported: '.DB::connection()->getConfig('driver');
-                throw new Exception($error);
-                break;
+                $return_array = array();
+            break;
+
+            case 'tinyint':
+            break;
+
+            case 'varchar':
+            break;
+ 
+            case 'text':
+            break;
+
+            case 'date':
+            break;
+
+            case 'time':
+            break;
+
+            case 'datetime':
+            break;
+
+            case 'decimal':
+            break;
+
+            case 'timestamp':
+            break;
+
+            default:
+            break;
         }
     }
 
