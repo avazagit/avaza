@@ -17,64 +17,69 @@ class BaseModel extends \Eloquent{
         return $this->errors;
     }
 
-    public static function getAllColumns($table){
-        $columns = array();
+    protected function getAllColumns($table, $special_fields = array()){
         $query = 'SHOW COLUMNS FROM '.$table;
         foreach(DB::select($query) as $column){
-            $type_split = explode('(', $column->Type);
-            $column_type = $type_split['0'];
-            $length_split = isset($type_split['1']) ? explode(') ', $type_split['1']):array('');
-            $column_length = $length_split['0'];
-            $column_setting = isset($length_split['1']) ? TRUE:FALSE;
-            $columns[] = array(
-                'Field' => array(
-                    'Type'     => $column_type,
-                    'Null'     => $column->Null,
-                    'Default'  => $column->Default,
-                    'Key'      => $column->Key,
-                    'Length'   => $column_length,
-                    'Unsigned' => $column_setting
-                )
-            );
-        }
-        return $columns;
+            $delimiters = array('(', ') ');
+            $ready = str_replace($delimiters, $delimiters[0], $column->Type);
+            $split = explode($delimiters[0], $ready);
+            if($column->Field != 'id'){
+                $column_data = array(
+                    
+                    'Null'     => $column->Null    != '' ? $column->Null:NULL,
+                    'Name'     => $column->Field   != '' ? $column->Field:NULL,
+                    'Default'  => $column->Default != '' ? $column->Default:NULL,
+                    'Key'      => $column->Key == 'UNI'  ? 'UNI':NULL,
+                    'Type'     => isset($split['0'])     ? $split['0']:NULL,
+                    'Length'   => isset($split['1'])     ? $split['1']:NULL,
+                    'Unsigned' => isset($split['2'])     ? $split['2']:NULL
+                );
+                $column_details = $this->getValidationByColumn($column_name, $column_data, $special_fields);
+                $columns[] =
+            }            
+        }        
     }
 
-    public static function getValidationByColumn($name, $column_array, $exact_length = FALSE){
-        $required = $column_array['Null'] == 'YES' ? 'required':null;
-        $unique   = $column_array['Key']  == 'UNI' ? 'unique:' . strtolower(str_plural($name)):null;
+    protected function getValidationByColumn($column_name, $column_data, $special_fields){
+        $required = $column_data['Null'] == 'YES' ? 'required':NULL;
+        $unique   = $column_data['Key']  == 'UNI' ? 'unique:' . strtolower(str_plural($column_name)):NULL;
         $validation = array();
-        $validation[] = isset($required) ? $required:'';
-        $validation[] = isset($unique) ? $unique:'';
-        switch ($column_array['Type']){
+        if(isset($required)){ $validation[] = $required; }
+        if(isset($unique)){ $validation[] = $unique; }
+        switch ($column_data['Type']){
             case 'int':
-                if(column_array['Key'] != 'PRI'){
-                    if(column_array['Unsigned'] != TRUE){
-                        $validation[] = strlen($validation) > 0 ? '|':'';
-                        $validation[] = 'numeric|';
-                        if($exact_length == FALSE){
-                            $validation[] = 'digits_between:2,' . $column_array['Length'];
+                    $validation[] = 'numeric';
+                    if(!isset($column_array['Unsigned'])){
+                        if(isset($special_fields['exact'])){
+                            $validation[] = 'digits:' . $special_fields['exact'];
                         } else{                            
-                            $validation[] = 'digits:' . $exact_length;
+                            $validation[] = 'digits_between:2,' . $column_array['Length'];
                         }                        
                         return array($name => array($validation, $default));
-                   } else{
-                        //foreign key figure that out
-                   }                    
-                } else{
-                    return FALSE;
+                    } else{
+                        $model = explode('_', $name)['0'];
+                        $model = str_plural($model);
+                        if(in_array($model, $foreign_keys)){
+                            $model = $foreign_keys[$model];
+                        }
+                        $validation[] = 'exists:' . $model;
+                    }
                 }
+                return FALSE;
             break;
 
             case 'tinyint':
-                $validation[] = strlen($validation) > 0 ? '|':'';
-                $validation[] = 'numeric|';
+                $validation[] = 'numeric';
                 $validation[] = 'digits:1';                      
                 return array($name => array($validation, $default));
             break;
 
+            case 'decimal':
+                $validation[] = 'regex:^\d{1,2}($|\.\d{1,2}$)^';
+                return array($name => array($validation, $default));
+            break;
+
             case 'varchar':
-                $validation[] = strlen($validation) > 0 ? '|':'';
                 if($exact_length == FALSE){
                     $validation[] = 'digits_between:2,' . $column_array['Length'];
                 } else{
@@ -88,26 +93,25 @@ class BaseModel extends \Eloquent{
             break;
 
             case 'date':
-                $validation[] = strlen($validation) > 0 ? '|':'';
-                |date|date_format:Y-m-d
+                $validation[] = 'date';
+                $validation[] = 'date_format:Y-m-d';
+                return array($name => array($validation, $default));
             break;
 
             case 'time':
-                $validation[] = strlen($validation) > 0 ? '|':'';
-                |date_format:Y-m-d
+                $validation[] = 'date';
+                $validation[] = 'date_format:H:i:s';
+                return array($name => array($validation, $default));
             break;
 
             case 'datetime':
-                $validation[] = strlen($validation) > 0 ? '|':'';
-                |date|date_format:Y-m-d H:i:s
-            break;
-
-            case 'decimal':
-                $validation[] = strlen($validation) > 0 ? '|':'';
-                'regex:^\d{1,2}($|\.\d{1,2}$)^'
+                $validation[] = 'date';
+                $validation[] = 'date_format:Y-m-d H:i:s'
+                return array($name => array($validation, $default));
             break;
 
             default:
+                return FALSE;
             break;
         }
     }
