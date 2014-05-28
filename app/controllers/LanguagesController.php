@@ -21,7 +21,9 @@ class LanguagesController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('languages.create');
+		$data = array('Language', 'language', 'Languages', 'languages');
+		$fields = Form::generateByModel($data['1']);
+		return View::make('layouts.crud.create', array('data' => $data, 'fields' => $fields));
 	}
 
 	/**

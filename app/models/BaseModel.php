@@ -17,15 +17,19 @@ class BaseModel extends \Eloquent{
         return $this->errors;
     }
 
+    public static function getFormFields($table, $special_fields){
+    	return $this->getAllColumns($table, $special_fields);
+    }
+
     protected function getAllColumns($table, $special_fields = array()){
         $query = 'SHOW COLUMNS FROM '.$table;
+        $columns = array();
         foreach(DB::select($query) as $column){
             $delimiters = array('(', ') ');
             $ready = str_replace($delimiters, $delimiters[0], $column->Type);
             $split = explode($delimiters[0], $ready);
             if($column->Field != 'id'){
                 $column_data = array(
-                    
                     'Null'     => $column->Null    != '' ? $column->Null:NULL,
                     'Name'     => $column->Field   != '' ? $column->Field:NULL,
                     'Default'  => $column->Default != '' ? $column->Default:NULL,
@@ -34,86 +38,93 @@ class BaseModel extends \Eloquent{
                     'Length'   => isset($split['1'])     ? $split['1']:NULL,
                     'Unsigned' => isset($split['2'])     ? $split['2']:NULL
                 );
-                $column_details = $this->getValidationByColumn($column_name, $column_data, $special_fields);
-                $columns[] =
+                $column_details = $this->getValidationByColumn($column_data, $special_fields);
+                $columns[] = $column_details;
             }            
         }        
     }
 
-    protected function getValidationByColumn($column_name, $column_data, $special_fields){
-        $required = $column_data['Null'] == 'YES' ? 'required':NULL;
+    protected function getValidationByColumn($column_data, $special_fields){
+    	$name = $special_fields['Name'];
+    	$required = $column_data['Null'] == 'YES' ? 'required':NULL;
+        $exact = isset($special_fields[$name]['exact']) ? $special_fields[$name]['exact']:FALSE;
         $unique   = $column_data['Key']  == 'UNI' ? 'unique:' . strtolower(str_plural($column_name)):NULL;
-        $validation = array();
-        if(isset($required)){ $validation[] = $required; }
-        if(isset($unique)){ $validation[] = $unique; }
+        $validators = array();
+        if(isset($required)){ $validators[] = $required; }
+        if(isset($unique)){ $validators[] = $unique; }
         switch ($column_data['Type']){
             case 'int':
-                    $validation[] = 'numeric';
+            		$field_type = 'text';
+                    $validators[] = 'numeric';
                     if(!isset($column_array['Unsigned'])){
-                        if(isset($special_fields['exact'])){
-                            $validation[] = 'digits:' . $special_fields['exact'];
+                        if($exact == FALSE){
+                        	$validators[] = 'digits_between:2,' . $column_data['Length'];
                         } else{                            
-                            $validation[] = 'digits_between:2,' . $column_array['Length'];
-                        }                        
-                        return array($name => array($validation, $default));
-                    } else{
-                        $model = explode('_', $name)['0'];
-                        $model = str_plural($model);
-                        if(in_array($model, $foreign_keys)){
-                            $model = $foreign_keys[$model];
+                            $validators[] = 'digits:' . $exact;
                         }
-                        $validation[] = 'exists:' . $model;
+                        continue;
+                    } else{
+                        $model = explode('_', $column_data['Name'])['0'];
+                        if(in_array($model, $special_fields[$name])){
+                            $model = $special_fields[$name][$model];
+                        } else{
+                        	$model = str_plural($model);
+                        }
+                        $validators[] = 'exists:' . $model;
+                        continue;
                     }
                 }
                 return FALSE;
             break;
 
             case 'tinyint':
-                $validation[] = 'numeric';
-                $validation[] = 'digits:1';                      
-                return array($name => array($validation, $default));
-            break;
+            	$field_type = 'checkbox';
+                $validators[] = 'numeric';
+                $validators[] = 'digits:1';                        
+            	continue;
 
             case 'decimal':
-                $validation[] = 'regex:^\d{1,2}($|\.\d{1,2}$)^';
-                return array($name => array($validation, $default));
-            break;
+            	$field_type = 'text';
+                $validators[] = 'regex:^\d{1,2}($|\.\d{1,2}$)^';
+            	continue;
 
             case 'varchar':
-                if($exact_length == FALSE){
-                    $validation[] = 'digits_between:2,' . $column_array['Length'];
+            	$field_type = 'text';
+                if($exact == FALSE){
+                    $validators[] = 'digits_between:2,' . $column_data['Length'];
                 } else{
-                    $validation[] = 'size:' . $exact_length;
-                }                        
-                return array($name => array($validation, $default));
-            break;
+                    $validators[] = 'size:' . $exact;
+                }
+            	continue;
  
-            case 'text':       
-                return array($name => array($validation, $default));
-            break;
+            case 'text':
+            	$field_type = 'textarea';
+            	$validators[] = 'digits_between:10,500';
+            	continue;
 
             case 'date':
-                $validation[] = 'date';
-                $validation[] = 'date_format:Y-m-d';
-                return array($name => array($validation, $default));
-            break;
+            	$field_type = 'text';
+                $validators[] = 'date';
+                $validators[] = 'date_format:Y-m-d';
+            	continue;
 
             case 'time':
-                $validation[] = 'date';
-                $validation[] = 'date_format:H:i:s';
-                return array($name => array($validation, $default));
-            break;
+            	$field_type = 'text';
+                $validators[] = 'date';
+                $validators[] = 'date_format:H:i:s';
+            	continue;
 
             case 'datetime':
-                $validation[] = 'date';
-                $validation[] = 'date_format:Y-m-d H:i:s'
-                return array($name => array($validation, $default));
-            break;
+            	$field_type = 'text';
+                $validators[] = 'date';
+                $validators[] = 'date_format:Y-m-d H:i:s'
+            	continue;
 
             default:
                 return FALSE;
-            break;
+            	break;
         }
+        return array($column_data['Name'] => array('validators' => $validators, 'field_type' => $field_type, 'default_value' => $column_data['default']));
     }
 
 }

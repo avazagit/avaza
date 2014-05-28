@@ -14,23 +14,23 @@ class Language extends BaseModel{
         return $this->hasMany('Schedule');
     }
 
+	public static $rules = count($rules) > 0 ? $rules:$this->setInfo('rules');
+	public static $fields = count($fields) > 0 ? $fields:$this->setInfo('fields');
 
-	
-
-
-	public static $rules = [
-	  //'id'
-		'language' => 'required|unique:languages',
-	  //'phonetic'                    // null
-		'language_code' => 'required|digits:3|unique:languages',
-		'country_of_origin' =>        // null
-	  //'alternate_languages_json'    // null
-	  //'deleted_at'
-	  //'created_at'
-	  //'updated_at'
-	];
-
-	protected $fillable = array();
+	protected $table = 'languages';
+	protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at', 'alternate_languages_json');
 	protected $softDelete = true;
-	
+    protected $special_fields = array('language_code' => array('exact' => 3));
+
+	protected function setInfo($purpose){
+			$columns_details = Languages::getFormFields($table, $special_fields);
+			$rules = array();
+			$fields = array();
+			foreach($columns_details as $column_name => $column_detail){
+				$rules[] = $column_name => $column_detail['validators'];
+				$fields[] = $column_name => array($column_detail['field_type'], $column_detail['default_value']);
+			}
+			return $$purpose;
+		}
+	}
 }

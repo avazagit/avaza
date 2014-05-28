@@ -17,7 +17,7 @@ class CreateLanguagesTable extends Migration {
 			$table->string('language')->unique();
 			$table->string('phonetic')->nullable();
 			$table->string('language_code')->unique();
-			$table->string('country_of_origin',3)->nullable();
+			$table->string('country_of_origin')->nullable();
 			$table->text('alternate_languages_json')->nullable();
 			$table->softDeletes();
 			$table->timestamps();
