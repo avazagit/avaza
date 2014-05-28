@@ -4,7 +4,7 @@ class BaseModel extends \Eloquent{
     
     protected $errors;
     public function validate($data){
-        $validator = Validator::make($data, $this->setInfo('rules'));
+        $validator = Validator::make($data, $this->getRules());
         if ($validator->fails()){
             $this->errors = $validator->errors;
             return false;
