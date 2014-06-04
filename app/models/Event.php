@@ -1,23 +1,17 @@
 <?php
 
-class Event extends Elegant{
+class Event extends BaseModel{
 
-	public function eventable(){
+	//MASS ASSIGNMENT AND DELETION VARIABLES
+    protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at', 'purchase_order_numbers_json');
+    protected $softDelete = true;
+
+    //RELATIONSHIPS
+    public function eventable(){
         return $this->morphTo();
     }
 
-	public static $rules = [
-	  //id'
-	  //'eventable_id'
-	  //'eventable_type'
-		'description' => 'required|alpha_dash|digits_between:2,254',
-		'timestamp' => 'required|date|date_format:Y-m-d H:i:s'
-	  //'deleted_at'
-	  //'created_at'
-	  //'updated_at'
-	];
+    //SCOPES
 
-	protected $fillable = array();
-	protected $softDelete = true;
-
+	
 }

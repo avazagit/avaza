@@ -33,7 +33,7 @@ class ContractsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Contract::$rules);
+		$validator = Validator::make($data = Input::all(), ContractRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -81,7 +81,7 @@ class ContractsController extends \BaseController {
 	{
 		$contract = Contract::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Contract::$rules);
+		$validator = Validator::make($data = Input::all(), ContractRules::$rules);
 
 		if ($validator->fails())
 		{

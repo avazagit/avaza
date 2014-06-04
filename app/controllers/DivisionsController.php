@@ -31,7 +31,7 @@ class DivisionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Division::$rules);
+		$validator = Validator::make($data = Input::all(), DivisionRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +79,7 @@ class DivisionsController extends \BaseController {
 	{
 		$division = Division::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Division::$rules);
+		$validator = Validator::make($data = Input::all(), DivisionRules::$rules);
 
 		if ($validator->fails())
 		{

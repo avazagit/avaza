@@ -31,7 +31,7 @@ class EventsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Event::$rules);
+		$validator = Validator::make($data = Input::all(), EventRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +79,7 @@ class EventsController extends \BaseController {
 	{
 		$event = Event::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Event::$rules);
+		$validator = Validator::make($data = Input::all(), EventRules::$rules);
 
 		if ($validator->fails())
 		{

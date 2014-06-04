@@ -2,6 +2,7 @@
 
 class UsersController extends \BaseController {
 
+	protected $layout = 'layouts.crud';
 	/**
 	 * Display a listing of users
 	 *
@@ -31,7 +32,7 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), User::$rules);
+		$validator = Validator::make($data = Input::all(), UserRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +80,7 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), User::$rules);
+		$validator = Validator::make($data = Input::all(), UserRules::$rules);
 
 		if ($validator->fails())
 		{

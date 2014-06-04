@@ -1,17 +1,17 @@
 <?php
 
 class LanguagesController extends \BaseController {
-
+	protected $layout = 'layouts.crud';
 	/**
 	 * Display a listing of languages
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index(){
 		$languages = Language::all();
-
-		return View::make('languages.index', compact('languages'));
+		$model_name = 'Language';
+		$this->layout->model_name = $model_name;
+		$this->layout->content = View::make('languages.index', compact('languages', 'model_name'));
 	}
 
 	/**
@@ -19,11 +19,10 @@ class LanguagesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		$data = array('Language', 'language', 'Languages', 'languages');
-		$fields = Form::generateByModel($data['1']);
-		return View::make('layouts.crud.create', array('data' => $data, 'fields' => $fields));
+	public function create(){	
+		$model_name = 'Language';
+		$this->layout->model_name = $model_name;
+		$this->layout->content = View::make('languages.create');
 	}
 
 	/**
@@ -31,12 +30,9 @@ class LanguagesController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		$validator = Validator::make($data = Input::all(), Language::$rules);
-
-		if ($validator->fails())
-		{
+	public function store(){
+        $validator = Validator::make($data = Input::all(), LanguageRules::$rules);
+        if ($validator->fails()){
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
@@ -54,8 +50,9 @@ class LanguagesController extends \BaseController {
 	public function show($id)
 	{
 		$language = Language::findOrFail($id);
-
-		return View::make('languages.show', compact('language'));
+		$model_name = 'Language';
+		$this->layout->model_name = $model_name;
+		$this->layout->content = View::make('languages.show', compact('language', 'model_name'));
 	}
 
 	/**
@@ -67,8 +64,9 @@ class LanguagesController extends \BaseController {
 	public function edit($id)
 	{
 		$language = Language::find($id);
-
-		return View::make('languages.edit', compact('language'));
+		$model_name = 'Language';
+		$this->layout->model_name = $model_name;
+		$this->layout->content = View::make('languages.edit', compact('language', 'model_name'));
 	}
 
 	/**
@@ -80,16 +78,11 @@ class LanguagesController extends \BaseController {
 	public function update($id)
 	{
 		$language = Language::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), Language::$rules);
-
-		if ($validator->fails())
-		{
+		$validator = Validator::make($data = Input::all(), LanguageRules::$rules);
+		if ($validator->fails()){
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-
 		$language->update($data);
-
 		return Redirect::route('languages.index');
 	}
 

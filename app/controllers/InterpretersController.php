@@ -2,6 +2,8 @@
 
 class InterpretersController extends \BaseController {
 
+	protected $layout = 'layouts.crud';
+
 	/**
 	 * Display a listing of interpreters
 	 *
@@ -10,8 +12,8 @@ class InterpretersController extends \BaseController {
 	public function index()
 	{
 		$interpreters = Interpreter::all();
-
-		return View::make('interpreters.index', compact('interpreters'));
+		$this->layout->model_name = 'Interpreter';
+		$this->layout->content = View::make('interpreters.index', compact('interpreters'));
 	}
 
 	/**
@@ -21,7 +23,8 @@ class InterpretersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('interpreters.create');
+		$this->layout->model_name = 'Interpreter';
+		$this->layout->content = View::make('interpreters.create');
 	}
 
 	/**
@@ -31,7 +34,7 @@ class InterpretersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Interpreter::$rules);
+		$validator = Validator::make($data = Input::all(), InterpreterRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -52,8 +55,8 @@ class InterpretersController extends \BaseController {
 	public function show($id)
 	{
 		$interpreter = Interpreter::findOrFail($id);
-
-		return View::make('interpreters.show', compact('interpreter'));
+		$this->layout->model_name = 'Interpreter';
+		$this->layout->content = View::make('interpreters.show', compact('interpreter'));
 	}
 
 	/**
@@ -65,8 +68,8 @@ class InterpretersController extends \BaseController {
 	public function edit($id)
 	{
 		$interpreter = Interpreter::find($id);
-
-		return View::make('interpreters.edit', compact('interpreter'));
+		$this->layout->model_name = 'Interpreter';
+		$this->layout->content =  View::make('interpreters.edit', compact('interpreter'));
 	}
 
 	/**
@@ -79,7 +82,7 @@ class InterpretersController extends \BaseController {
 	{
 		$interpreter = Interpreter::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Interpreter::$rules);
+		$validator = Validator::make($data = Input::all(), InterpreterRules::$rules);
 
 		if ($validator->fails())
 		{

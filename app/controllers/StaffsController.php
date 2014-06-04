@@ -31,7 +31,7 @@ class StaffsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Staff::$rules);
+		$validator = Validator::make($data = Input::all(), StaffRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +79,7 @@ class StaffsController extends \BaseController {
 	{
 		$staff = Staff::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Staff::$rules);
+		$validator = Validator::make($data = Input::all(), StaffRules::$rules);
 
 		if ($validator->fails())
 		{

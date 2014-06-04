@@ -31,7 +31,7 @@ class SchedulesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Schedule::$rules);
+		$validator = Validator::make($data = Input::all(), ScheduleRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +79,7 @@ class SchedulesController extends \BaseController {
 	{
 		$schedule = Schedule::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Schedule::$rules);
+		$validator = Validator::make($data = Input::all(), ScheduleRules::$rules);
 
 		if ($validator->fails())
 		{

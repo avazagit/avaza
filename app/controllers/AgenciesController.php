@@ -33,7 +33,7 @@ class AgenciesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Agency::$rules);
+		$validator = Validator::make($data = Input::all(), AgencyRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -81,7 +81,7 @@ class AgenciesController extends \BaseController {
 	{
 		$agency = Agency::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Agency::$rules);
+		$validator = Validator::make($data = Input::all(), AgencyRules::$rules);
 
 		if ($validator->fails())
 		{

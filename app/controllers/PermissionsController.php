@@ -31,7 +31,7 @@ class PermissionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Permission::$rules);
+		$validator = Validator::make($data = Input::all(), PermissionRules::$rules);
 
 		if ($validator->fails())
 		{
@@ -79,7 +79,7 @@ class PermissionsController extends \BaseController {
 	{
 		$permission = Permission::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Permission::$rules);
+		$validator = Validator::make($data = Input::all(), PermissionRules::$rules);
 
 		if ($validator->fails())
 		{

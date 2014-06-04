@@ -1,32 +1,35 @@
 <?php
 // get form fields and create form elements from model get_fields function then populate the entire form
 Form::macro('generateByModel', function($model){
-	$fields = $model::setInfo('fields');
-	foreach($fields as $field_name => $field_array){
-    	$field_caps = titleize($field_name);
-    	$label = Form::label($field_name, $field_caps);
+	$fields = $model::getFields(str_plural($model));
+	foreach($fields as $field_array){
+    	$field_caps = titleize($field_array['name']);
+    	$label = Form::label($field_array['name'], $field_caps);
+    	$class = isset($field_array['class']) ? $field_array['class']:'form-control';
+    	$container_class = isset($field_array['container_class']) ? $field_array['class']:'form_group';
     	switch($field_array['type']){
     		case 'checkbox':
-	    		$field = Form::checkbox($field_name);
-	    		$layout[] = '<div class="checkbox">' . $label . $field . '</div>';
+	    		$field = Form::checkbox($field_array['name']);
+	    		break;
+    		case 'foreign':
+	    		$field = Form::foreignSelectById($field_array['default'], $class);
 	    		break;
     		case 'select':
-	    		$func_name = camel_case($field_name);
-	    		$field = Form::$func_name();
-	    		$layout[] = '<div class="form-group">' . $label . $field . '</div>';
+	    		$field = Form::select($field_array['name'], $field_array['default'], null, array('class' => $class));
 	    		break;
     		default:
-    			$field = Form::text($field_name, $field_array['default'], array('class' => 'form-control'));
-    			$layout[] = '<div class="form-group">' . $label . $field . '</div>';
+    			$field = Form::text($field_array['name'], $field_array['default'], array('class' => $class));
     			break;
     	}
+    	$layout[] = '<div class=' . $container_class . '>' . $label . $field . '</div>';
     }
     return $layout;
 });
 
-Form::macro('contractId', function(){
-	$contracts = Contract::remember(60)->lists('name', 'id');
-	return Form::select('contract_id', $contracts, null, array('class' => 'form-control'));
+Form::macro('foreignSelectById', function($foreign_model, $class){
+	$from_model = ucfirst($foreign_model);
+	$list = $from_model::remember(60)->lists('name', 'id');
+	return Form::select($foreign_model . '_id', $list, null, array('class' => $class));
 });
 
 function titleize($string = NULL){

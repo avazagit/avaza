@@ -1,8 +1,13 @@
 <?php
 
-class Client extends Elegant{
+class Client extends BaseModel{
 
-   public function division(){
+    //MASS ASSIGNMENT AND DELETION VARIABLES
+    protected $guarded = array('id', 'deleted_at', 'created_at', 'updated_at');
+    protected $softDelete = true;
+
+    //RELATIONSHIPS
+    public function division(){
         return $this->belongsTo('Division');
     }
 
@@ -18,30 +23,7 @@ class Client extends Elegant{
         return $this->morphMany('Event', 'eventable');
     }
 
-    static function getFields(){
-        return array(
-            'division_id' => 'select',
-            'phone' => 'checkbox',
-            'video' => 'checkbox',
-            'sites' => 'checkbox',
-            'trans' => 'checkbox'
-        );
-    }
+    //SCOPES
 
-	public static $rules = [
-      //'id');
-        'division_id' => 'required|exists:divisions',// foreign index
-      //'phone' boolean
-      //'video' boolean
-      //'sites' boolean
-      //'trans' boolean
-        'last_request' =>'date|date_format:Y-m-d H:i:s' // null
-      //'deleted_at'
-      //'created_at'
-      //'updated_at'
-	];
-
-	protected $fillable = array();
-	protected $softDelete = true;
-
+    
 }
